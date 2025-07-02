@@ -61,14 +61,14 @@ public class Personagem {
     }
 
     public void setNomePersonagem(String nomePersonagem) throws Exception {
-        if (nomePersonagem.length() <= 3) {
-           throw new Exception("Nome do personagem deve conter 4 ou mais caracteres");
+        if (nomePersonagem.length() < 3) {
+           throw new Exception("Nome do personagem deve conter 3 ou mais caracteres");
         }
         this.nomePersonagem = nomePersonagem;
     }
 
     public void setVida(int vida) throws VidaNegativaException {
-        if (vida <= 0){
+        if (vida < 0){
             throw new VidaNegativaException("A vida deve ser maior que 0");
         } else if (vida > 100){
             throw new VidaExcessoException("Vida maxima de 100 pontos");
@@ -77,7 +77,7 @@ public class Personagem {
     }
 
     public void setAtaque(int ataque) throws AtaqueNegativoException {
-        if (ataque <= 0) {
+        if (ataque < 0) {
             throw new AtaqueNegativoException("O ataque deve ser maior que 0");
         }
         this.ataque = ataque;

@@ -37,16 +37,20 @@ public class Combate {
 
                 if (atacarPrimeiro == 1) {
                     vidaAtual2 -= personagem1.getAtaque();
-
+                    if (vidaAtual2 < 0){
+                        vidaAtual2 = 0;
+                    }
                     personagem2.setVida(vidaAtual2);
 
                 } else if (atacarPrimeiro == 2) {
                     vidaAtual1 -= personagem2.getAtaque();
-
+                    if (vidaAtual1 < 0){
+                        vidaAtual1 = 0;
+                    }
                     personagem1.setVida(vidaAtual1);
                 }
 
-                if (vidaAtual1 <= 0 || vidaAtual2 <= 0){
+                if (vidaAtual1 == 0 || vidaAtual2 == 0){
                     System.out.println("\n~~~ Combate encerrado. Personagem derrotado. ~~~\n");
                     break;
                 }
@@ -56,13 +60,13 @@ public class Combate {
 
     @Override
     public String toString() {
-        return "\nCombate entre: " + this.personagem1.getNomePersonagem() + " e "
-                + this.personagem2.getNomePersonagem() + "\n" +
+        return "\n~~~ Combate entre: " + this.personagem1.getNomePersonagem() + " e "
+                + this.personagem2.getNomePersonagem() + "\n~~~ " +
 
                 this.personagem1.getNomePersonagem() +
-                " ~~~ vida final: " + this.personagem1.getVida() + "\n" +
+                " ~~~\nVida final: " + this.personagem1.getVida() + "\n~~~ " +
 
                 this.personagem2.getNomePersonagem() +
-                " ~~~ vida final: " + this.personagem2.getVida();
+                "~~~ \nVida final: " + this.personagem2.getVida();
    }
 }

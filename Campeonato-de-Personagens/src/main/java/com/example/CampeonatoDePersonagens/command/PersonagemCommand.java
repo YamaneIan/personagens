@@ -1,6 +1,8 @@
 package com.example.CampeonatoDePersonagens.command;
 
 import com.example.CampeonatoDePersonagens.Exception.AtaqueNegativoException;
+import com.example.CampeonatoDePersonagens.Exception.VidaExcessoException;
+import com.example.CampeonatoDePersonagens.Exception.VidaNegativaException;
 import com.example.CampeonatoDePersonagens.Model.Personagem;
 
 import java.util.Scanner;
@@ -36,9 +38,11 @@ public class PersonagemCommand {
             System.out.println("Digite a vida de " + personagem.getNomePersonagem() + " Limite de 100");
             Integer vida = leitura.nextInt();
             personagem.setVida(vida);
-        } catch (Exception e) {
-            System.out.println("A vida deve ser um numero inteiro ");
-            leitura.nextLine();
+        } catch (VidaNegativaException e) {
+            System.out.println("A vida deve ser maior que 0");
+            this.criarVida();
+        } catch (VidaExcessoException e){
+            System.out.println("Vida maxima de 100 pontos");
             this.criarVida();
         }
 //        personagem.setVida(leitura.nextInt());
