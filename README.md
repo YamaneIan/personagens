@@ -1,2 +1,2 @@
 # java-personagens
-arquivos de java 
+Programa para simular combates entre personagens.
