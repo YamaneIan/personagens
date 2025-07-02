@@ -46,5 +46,6 @@ public class Principal {
             turno.exibirStatus();
 
 //        this.lutar();
+        //Commit 3 aparentemente.teste
     }
 }
