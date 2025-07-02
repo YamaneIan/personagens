@@ -1,6 +1,7 @@
 package com.example.CampeonatoDePersonagens.Model;
 
 import com.example.CampeonatoDePersonagens.Exception.AtaqueNegativoException;
+import com.example.CampeonatoDePersonagens.Exception.VidaExcessoException;
 import com.example.CampeonatoDePersonagens.Exception.VidaNegativaException;
 
 public class Personagem {
@@ -69,6 +70,8 @@ public class Personagem {
     public void setVida(int vida) throws VidaNegativaException {
         if (vida <= 0){
             throw new VidaNegativaException("A vida deve ser maior que 0");
+        } else if (vida > 100){
+            throw new VidaExcessoException("Vida maxima de 100 pontos");
         }
         this.vida = vida;
     }
