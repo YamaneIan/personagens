@@ -1,5 +1,6 @@
 package com.example.CampeonatoDePersonagens.Model;
 
+import com.example.CampeonatoDePersonagens.Exception.AtaqueExcessoException;
 import com.example.CampeonatoDePersonagens.Exception.AtaqueNegativoException;
 import com.example.CampeonatoDePersonagens.Exception.VidaExcessoException;
 import com.example.CampeonatoDePersonagens.Exception.VidaNegativaException;
@@ -12,7 +13,7 @@ public class Personagem {
 
 //    Scanner leitura  = new Scanner(System.in);
 
-//    public void criarPersonagem(){
+    //    public void criarPersonagem(){
 //        System.out.println("Digite seu nome: ");
 //        this.nomeJogador = leitura.nextLine();
 //
@@ -62,7 +63,7 @@ public class Personagem {
 
     public void setNomePersonagem(String nomePersonagem) throws Exception {
         if (nomePersonagem.length() < 3) {
-           throw new Exception("Nome do personagem deve conter 3 ou mais caracteres");
+            throw new Exception("Nome do personagem deve conter 3 ou mais caracteres");
         }
         this.nomePersonagem = nomePersonagem;
     }
@@ -79,6 +80,8 @@ public class Personagem {
     public void setAtaque(int ataque) throws AtaqueNegativoException {
         if (ataque < 0) {
             throw new AtaqueNegativoException("O ataque deve ser maior que 0");
+        } else if (ataque > 50) {
+            throw new AtaqueExcessoException("Ataque maximo de 50 pontos");
         }
         this.ataque = ataque;
     }

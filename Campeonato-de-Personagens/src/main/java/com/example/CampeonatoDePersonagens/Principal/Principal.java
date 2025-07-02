@@ -37,15 +37,14 @@ public class Principal {
             turno.add(combate);
             System.out.println(combate);
 
-            System.out.println("Continuar 1, encerrar 2");
+            System.out.println("\nCriar novo combate = 1, \nEncerrar combates = 2");
             this.opcao = leitura.nextInt();
 
         } while (opcao == 1);
 
-            System.out.println("Encerrado");
-            turno.exibirStatus();
+        System.out.println("Programa encerrado, imprimindo lista de combates: ");
+        turno.exibirStatus();
 
 //        this.lutar();
-        //Commit 3 aparentemente.teste
     }
 }

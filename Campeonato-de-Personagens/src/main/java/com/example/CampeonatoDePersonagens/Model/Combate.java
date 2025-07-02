@@ -32,41 +32,48 @@ public class Combate {
         int atacarPrimeiro;
 
         do {
-            System.out.println("\nQuem vai atacar? \nPersonagem1 : 1\nPersonagem2 : 2\nEncerrar 3");
+            System.out.printf("\nQuem vai atacar? \n%s = 1\n%s = 2\nEncerrar = 3 : "
+                    ,personagem1.getNomePersonagem(),personagem2.getNomePersonagem());
             atacarPrimeiro = leitura.nextInt();
 
-                if (atacarPrimeiro == 1) {
-                    vidaAtual2 -= personagem1.getAtaque();
-                    if (vidaAtual2 < 0){
-                        vidaAtual2 = 0;
-                    }
-                    personagem2.setVida(vidaAtual2);
-
-                } else if (atacarPrimeiro == 2) {
-                    vidaAtual1 -= personagem2.getAtaque();
-                    if (vidaAtual1 < 0){
-                        vidaAtual1 = 0;
-                    }
-                    personagem1.setVida(vidaAtual1);
+            if (atacarPrimeiro == 1) {
+                vidaAtual2 -= personagem1.getAtaque();
+                if (vidaAtual2 < 0){
+                    vidaAtual2 = 0;
                 }
+                personagem2.setVida(vidaAtual2);
+                System.out.println("\n" + personagem1.getNomePersonagem() + " atacou!!!"
+                        + "\nVida atual de " + personagem2.getNomePersonagem()
+                        + ": " + personagem2.getVida());
 
-                if (vidaAtual1 == 0 || vidaAtual2 == 0){
-                    System.out.println("\n~~~ Combate encerrado. Personagem derrotado. ~~~\n");
-                    break;
+            } else if (atacarPrimeiro == 2) {
+                vidaAtual1 -= personagem2.getAtaque();
+                if (vidaAtual1 < 0){
+                    vidaAtual1 = 0;
                 }
+                personagem1.setVida(vidaAtual1);
+                System.out.println("\n" + personagem2.getNomePersonagem() + " atacou!!!"
+                        + "\nVida atual de " + personagem1.getNomePersonagem()
+                        + ": " + personagem1.getVida());
+            }
+
+            if (vidaAtual1 == 0 || vidaAtual2 == 0){
+                System.out.println("\n~~~ Combate encerrado. Personagem derrotado. ~~~");
+                break;
+            }
         } while (atacarPrimeiro < 3);
-            System.out.println("\n~~~ Combate encerrado. ~~~ \n");
+        System.out.println("\n~~~ Combate encerrado. ~~~");
     }
 
     @Override
     public String toString() {
         return "\n~~~ Combate entre: " + this.personagem1.getNomePersonagem() + " e "
-                + this.personagem2.getNomePersonagem() + "\n~~~ " +
+                + this.personagem2.getNomePersonagem() + " ~~~\n~~~ " +
 
                 this.personagem1.getNomePersonagem() +
                 " ~~~\nVida final: " + this.personagem1.getVida() + "\n~~~ " +
 
                 this.personagem2.getNomePersonagem() +
                 "~~~ \nVida final: " + this.personagem2.getVida();
-   }
+    }
 }
