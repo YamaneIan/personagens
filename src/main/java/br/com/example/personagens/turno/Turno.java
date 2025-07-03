@@ -16,7 +16,6 @@ public class Turno {
     public void exibirStatus(){
        for (Combate combate : this.combates) {
            System.out.println(combate.toString());
-           //asdasd
        }
     }
 }
