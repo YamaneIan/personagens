@@ -1,7 +1,6 @@
 package br.com.example.personagens.turno;
 
 import br.com.example.personagens.model.Combate;
-
 import java.util.ArrayList;
 import java.util.List;
 

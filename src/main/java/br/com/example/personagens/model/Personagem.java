@@ -1,35 +1,22 @@
 package br.com.example.personagens.model;
 
-import br.com.example.personagens.exception.*;
+import br.com.example.personagens.exception.ValorExcessivoException;
+import br.com.example.personagens.exception.ValorNegativoException;
 
 public class Personagem {
     private String nomeJogador;
     private String nomePersonagem;
     private int vida;
     private int ataque;
+    private int ataqueEspecial;
+    private boolean ataqueEspecialUsado = false;
 
-//    Scanner leitura  = new Scanner(System.in);
-
-    //    public void criarPersonagem(){
-//        System.out.println("Digite seu nome: ");
-//        this.nomeJogador = leitura.nextLine();
-//
-//        System.out.println("Digite o nome do personagem: ");
-//        this.nomePersonagem = leitura.nextLine();
-//
-//    }
-//
-//    public void criarStatus(){
-//        System.out.println("vida de " + nomePersonagem);
-//        vida = leitura.nextInt();
-//        System.out.println("ataque de " + nomePersonagem);
-//        ataque = leitura.nextInt();
-//    }
     public void exibirStatus(){
         String status = "\nNome do jogador: " + nomeJogador
                 + "\nNome do Personagem: " + nomePersonagem
                 + "\nVida : " + vida
-                + "\nAtaque: " + ataque;
+                + "\nAtaque: " + ataque
+                + "\nAtaque Especial " + ataqueEspecial;
 
         System.out.println(status);
     }
@@ -50,8 +37,10 @@ public class Personagem {
         return ataque;
     }
 
+    public int getAtaqueEspecial(){ return ataqueEspecial;}
 
-    public void setNomeJogador(String nomeJogador) throws Exception{
+
+    public void setNomeJogador(String nomeJogador) throws Exception {
 
         if (nomeJogador == null || nomeJogador.trim().isEmpty()){
             throw new Exception("Nome nao pode estar vazio");
@@ -77,22 +66,39 @@ public class Personagem {
         this.nomePersonagem = nomeLimpo;
     }
 
-    public void setVida(int vida) throws ValorNegativoException,ValorExcessivoException {
+    public void setVida(int vida) {
         if (vida < 0){
             throw new ValorNegativoException("A vida deve ser maior que 0");
-        } else if (vida > 100){
-            throw new ValorExcessivoException("Vida maxima de 100 pontos");
+        } else if (vida > 250){
+            throw new ValorExcessivoException("Vida maxima de 250 pontos");
         }
         this.vida = vida;
     }
 
-    public void setAtaque(int ataque) throws ValorNegativoException,ValorExcessivoException {
+    public void setAtaque(int ataque) {
         if (ataque < 0) {
             throw new ValorNegativoException("O ataque deve ser maior que 0");
         } else if (ataque > 50) {
             throw new ValorExcessivoException("Ataque maximo de 50 pontos");
         }
         this.ataque = ataque;
+    }
+
+    public void setAtaqueEspecial(int ataqueEspecial) {
+        if (ataqueEspecial < 0) {
+            throw new ValorNegativoException("O ataque especial deve ser maior que 0");
+        } else if (ataqueEspecial > 150) {
+            throw new ValorExcessivoException("Ataque maximo de 150 pontos");
+        }
+        this.ataqueEspecial = ataqueEspecial;
+    }
+
+    public boolean isAtaqueEspecialUsado(){
+        return ataqueEspecialUsado;
+    }
+
+    public void usarAtaqueEspecial(){
+        this.ataqueEspecialUsado = true;
     }
 
 }

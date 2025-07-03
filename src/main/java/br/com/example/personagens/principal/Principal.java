@@ -22,11 +22,13 @@ public class Principal {
             personagemCommand1.criarNomePersonagem();
             personagemCommand1.criarVida();
             personagemCommand1.criarAtaque();
+            personagemCommand1.criarAtaqueEspecial();
 
             personagemCommand2.criarNomeJogador();
             personagemCommand2.criarNomePersonagem();
             personagemCommand2.criarVida();
             personagemCommand2.criarAtaque();
+            personagemCommand2.criarAtaqueEspecial();
 
             personagemCommand1.exibirStatus();
             personagemCommand2.exibirStatus();

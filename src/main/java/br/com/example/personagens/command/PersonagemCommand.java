@@ -21,8 +21,8 @@ public class PersonagemCommand {
             System.out.println("Nome nao pode estar vazio");
             this.criarNomeJogador();
         }
-//        this.nomeJogador = leitura.nextLine();
     }
+
     public void criarNomePersonagem(){
         try {
             System.out.println("Digite o nome do personagem: ");
@@ -36,7 +36,7 @@ public class PersonagemCommand {
 
     public void criarVida(){
         try {
-            System.out.println("Digite a vida de " + personagem.getNomePersonagem() + ". Limite de 100");
+            System.out.println("Digite a vida de " + personagem.getNomePersonagem() + ". Limite de 250");
             personagem.setVida(leitura.nextInt());
 
         } catch (ValorNegativoException e) {
@@ -44,7 +44,7 @@ public class PersonagemCommand {
             this.criarVida();
 
         } catch (ValorExcessivoException e){
-            System.out.println("Vida maxima de 100 pontos");
+            System.out.println("Vida maxima de 250 pontos");
             this.criarVida();
 
         } catch (InputMismatchException e){
@@ -55,7 +55,6 @@ public class PersonagemCommand {
         } catch (Exception e){
             System.out.println(e);
         }
-//        personagem.setVida(leitura.nextInt());
     }
 
     public void criarAtaque(){
@@ -81,6 +80,31 @@ public class PersonagemCommand {
         }
     }
 
+    public void criarAtaqueEspecial(){
+        try {
+            System.out.println("Digite o valor do ataque especial de " +
+                    personagem.getNomePersonagem() + ". Limite de 150");
+
+            personagem.setAtaqueEspecial(leitura.nextInt());
+
+        } catch (ValorNegativoException e){
+            System.out.println("O ataque especial deve ser maior que 0");
+            this.criarAtaqueEspecial();
+
+        } catch (ValorExcessivoException e){
+            System.out.println("Ataque especial maximo de 150 pontos");
+            this.criarAtaqueEspecial();
+
+        } catch (InputMismatchException e){
+            System.out.println("Valor deve ser um numero positivo inteiro");
+            leitura.nextLine();
+            this.criarAtaqueEspecial();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public Personagem getPersonagem(){
         return personagem;
     }
@@ -88,5 +112,4 @@ public class PersonagemCommand {
     public void exibirStatus(){
         this.personagem.exibirStatus();
     }
-
 }
