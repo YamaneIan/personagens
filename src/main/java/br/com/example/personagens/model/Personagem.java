@@ -1,10 +1,7 @@
 package br.com.example.personagens.model;
 
 
-import br.com.example.personagens.exception.AtaqueExcessoException;
-import br.com.example.personagens.exception.AtaqueNegativoException;
-import br.com.example.personagens.exception.VidaExcessoException;
-import br.com.example.personagens.exception.VidaNegativaException;
+import br.com.example.personagens.exception.*;
 
 public class Personagem {
     private String nomeJogador;
@@ -56,34 +53,47 @@ public class Personagem {
 
 
     public void setNomeJogador(String nomeJogador) throws Exception{
-        if (nomeJogador == null){
+
+        if (nomeJogador == null || nomeJogador.trim().isEmpty()){
             throw new Exception("Nome nao pode estar vazio");
         }
-        this.nomeJogador = nomeJogador;
+
+        String nomeLimpo = nomeJogador.trim();
+
+        nomeLimpo = nomeLimpo.replaceAll("\\s+", " ");
+
+        this.nomeJogador = nomeLimpo;
     }
 
     public void setNomePersonagem(String nomePersonagem) throws Exception {
+
         if (nomePersonagem.length() < 3) {
             throw new Exception("Nome do personagem deve conter 3 ou mais caracteres");
         }
-        this.nomePersonagem = nomePersonagem;
+
+        String nomeLimpo = nomePersonagem.trim();
+
+        nomeLimpo = nomeLimpo.replaceAll("\\s+", " ");
+
+        this.nomePersonagem = nomeLimpo;
     }
 
-    public void setVida(int vida) throws VidaNegativaException {
+    public void setVida(int vida) throws ValorNegativoException,ValorExcessivoException {
         if (vida < 0){
-            throw new VidaNegativaException("A vida deve ser maior que 0");
+            throw new ValorNegativoException("A vida deve ser maior que 0");
         } else if (vida > 100){
-            throw new VidaExcessoException("Vida maxima de 100 pontos");
+            throw new ValorExcessivoException("Vida maxima de 100 pontos");
         }
         this.vida = vida;
     }
 
-    public void setAtaque(int ataque) throws AtaqueNegativoException {
+    public void setAtaque(int ataque) throws ValorNegativoException,ValorExcessivoException {
         if (ataque < 0) {
-            throw new AtaqueNegativoException("O ataque deve ser maior que 0");
+            throw new ValorNegativoException("O ataque deve ser maior que 0");
         } else if (ataque > 50) {
-            throw new AtaqueExcessoException("Ataque maximo de 50 pontos");
+            throw new ValorExcessivoException("Ataque maximo de 50 pontos");
         }
         this.ataque = ataque;
     }
+
 }

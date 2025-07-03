@@ -7,7 +7,9 @@ public class Combate {
     private Personagem personagem1;
     private Personagem personagem2;
 
-    public void combateInfo(Personagem personagem1, Personagem personagem2) {
+    public void guardarPersonagem(Personagem personagem1, Personagem personagem2) {
+
+        System.out.println("Combate info");
         this.personagem1 = personagem1;
         this.personagem2 = personagem2;
 
@@ -19,10 +21,6 @@ public class Combate {
         personagem2.getAtaque();
         personagem2.getVida();
 
-//        System.out.printf("Iniciando combate entre %s e %s"
-//                ,personagem1.getNomePersonagem()
-//                ,personagem2.getNomePersonagem());
-
     }
 
     public void atacar(Personagem personagem1, Personagem personagem2){
@@ -32,7 +30,7 @@ public class Combate {
         int atacarPrimeiro;
 
         do {
-            System.out.printf("\nQuem vai atacar? \n%s = 1\n%s = 2\nEncerrar = 3 : "
+            System.out.printf("\nQuem vai atacar? \n%s = 1\n%s = 2\nEncerrar o combate = 3 : "
                     ,personagem1.getNomePersonagem(),personagem2.getNomePersonagem());
             atacarPrimeiro = leitura.nextInt();
 
@@ -58,11 +56,11 @@ public class Combate {
             }
 
             if (vidaAtual1 == 0 || vidaAtual2 == 0){
-                System.out.println("\n~~~ Combate encerrado. Personagem derrotado. ~~~");
+                System.out.println("\n~~~ Personagem derrotado ~~~");
                 break;
             }
         } while (atacarPrimeiro < 3);
-        System.out.println("\n~~~ Combate encerrado. ~~~");
+        System.out.println("\n~~~ Combate encerrado ~~~");
     }
 
     @Override

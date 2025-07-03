@@ -7,9 +7,11 @@ import br.com.example.personagens.turno.Turno;
 import java.util.Scanner;
 
 public class Principal {
+
+    Scanner leitura = new Scanner(System.in);
+
     private Turno turno = new Turno();
     private int opcao = 1;
-    Scanner leitura = new Scanner(System.in);
 
     public void lutar() {
         do {
@@ -30,14 +32,15 @@ public class Principal {
             personagemCommand2.exibirStatus();
 
             Combate combate = new Combate();
-            combate.combateInfo(personagemCommand1.getPersonagem(), personagemCommand2.getPersonagem());
+
+            combate.guardarPersonagem(personagemCommand1.getPersonagem(), personagemCommand2.getPersonagem());
 
             combate.atacar(personagemCommand1.getPersonagem(),personagemCommand2.getPersonagem());
 
             turno.add(combate);
             System.out.println(combate);
 
-            System.out.println("\nCriar novo combate = 1, \nEncerrar combates = 2");
+            System.out.println("\nCriar novo combate = 1, \nEncerrar programa = 2\n");
             this.opcao = leitura.nextInt();
 
         } while (opcao == 1);
@@ -45,6 +48,6 @@ public class Principal {
         System.out.println("Programa encerrado, imprimindo lista de combates: ");
         turno.exibirStatus();
 
-//        this.lutar();
     }
+
 }

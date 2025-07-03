@@ -1,11 +1,9 @@
 package br.com.example.personagens.command;
 
-import br.com.example.personagens.exception.AtaqueExcessoException;
-import br.com.example.personagens.exception.AtaqueNegativoException;
-import br.com.example.personagens.exception.VidaExcessoException;
-import br.com.example.personagens.exception.VidaNegativaException;
+import br.com.example.personagens.exception.*;
 import br.com.example.personagens.model.Personagem;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PersonagemCommand {
@@ -40,17 +38,21 @@ public class PersonagemCommand {
             System.out.println("Digite a vida de " + personagem.getNomePersonagem() + ". Limite de 100");
             personagem.setVida(leitura.nextInt());
 
-        } catch (VidaNegativaException e) {
+        } catch (ValorNegativoException e) {
             System.out.println("A vida deve ser maior que 0");
             this.criarVida();
 
-        } catch (VidaExcessoException e){
+        } catch (ValorExcessivoException e){
             System.out.println("Vida maxima de 100 pontos");
+            this.criarVida();
+
+        } catch (InputMismatchException e){
+            System.out.println("Valor deve ser um numero inteiro");
+            leitura.nextLine();
             this.criarVida();
 
         } catch (Exception e){
             System.out.println(e);
-            this.criarVida();
         }
 //        personagem.setVida(leitura.nextInt());
     }
@@ -60,17 +62,21 @@ public class PersonagemCommand {
             System.out.println("Digite o ataque de " + personagem.getNomePersonagem() + ". Limite de 50");
             personagem.setAtaque(leitura.nextInt());
 
-        } catch (AtaqueNegativoException e) {
+        } catch (ValorNegativoException e) {
             System.out.println("O ataque deve ser maior que 0");
             this.criarAtaque();
 
-        } catch (AtaqueExcessoException e){
+        } catch (ValorExcessivoException e){
             System.out.println("Ataque maximo de 50 pontos");
             this.criarAtaque();
 
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (InputMismatchException e){
+            System.out.println("Valor deve ser um numero positivo inteiro");
+            leitura.nextLine();
             this.criarAtaque();
+
+        } catch (Exception e){
+            System.out.println(e);
         }
     }
 
