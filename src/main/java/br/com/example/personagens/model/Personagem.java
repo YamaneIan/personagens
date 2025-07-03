@@ -1,6 +1,5 @@
 package br.com.example.personagens.model;
 
-
 import br.com.example.personagens.exception.*;
 
 public class Personagem {

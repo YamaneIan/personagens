@@ -1,6 +1,7 @@
 package br.com.example.personagens.command;
 
-import br.com.example.personagens.exception.*;
+import br.com.example.personagens.exception.ValorExcessivoException;
+import br.com.example.personagens.exception.ValorNegativoException;
 import br.com.example.personagens.model.Personagem;
 
 import java.util.InputMismatchException;
