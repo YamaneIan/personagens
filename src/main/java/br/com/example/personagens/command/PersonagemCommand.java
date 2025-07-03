@@ -1,5 +1,6 @@
 package br.com.example.personagens.command;
 
+import br.com.example.personagens.exception.NomeInvalidoException;
 import br.com.example.personagens.exception.ValorExcessivoException;
 import br.com.example.personagens.exception.ValorNegativoException;
 import br.com.example.personagens.model.Personagem;
@@ -17,8 +18,8 @@ public class PersonagemCommand {
             System.out.println("Novo jogador, digite seu nome: ");
             this.personagem.setNomeJogador(leitura.nextLine());
 
-        } catch (Exception e){
-            System.out.println("Nome nao pode estar vazio");
+        } catch (NomeInvalidoException e){
+            System.out.println("Nome invalido");
             this.criarNomeJogador();
         }
     }
@@ -28,7 +29,7 @@ public class PersonagemCommand {
             System.out.println("Digite o nome do personagem: ");
             this.personagem.setNomePersonagem(leitura.nextLine());
 
-        } catch (Exception e){
+        } catch (NomeInvalidoException e){
             System.out.println("Nome do personagem deve conter 3 ou mais caracteres");
             this.criarNomePersonagem();
         }

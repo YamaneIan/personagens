@@ -1,5 +1,6 @@
 package br.com.example.personagens.model;
 
+import br.com.example.personagens.exception.NomeInvalidoException;
 import br.com.example.personagens.exception.ValorExcessivoException;
 import br.com.example.personagens.exception.ValorNegativoException;
 
@@ -40,10 +41,10 @@ public class Personagem {
     public int getAtaqueEspecial(){ return ataqueEspecial;}
 
 
-    public void setNomeJogador(String nomeJogador) throws Exception {
+    public void setNomeJogador(String nomeJogador)  {
 
         if (nomeJogador == null || nomeJogador.trim().isEmpty()){
-            throw new Exception("Nome nao pode estar vazio");
+            throw new NomeInvalidoException ("Nome nao pode estar vazio");
         }
 
         String nomeLimpo = nomeJogador.trim();
@@ -53,10 +54,10 @@ public class Personagem {
         this.nomeJogador = nomeLimpo;
     }
 
-    public void setNomePersonagem(String nomePersonagem) throws Exception {
+    public void setNomePersonagem(String nomePersonagem) {
 
         if (nomePersonagem.length() < 3) {
-            throw new Exception("Nome do personagem deve conter 3 ou mais caracteres");
+            throw new NomeInvalidoException("Nome do personagem deve conter 3 ou mais caracteres");
         }
 
         String nomeLimpo = nomePersonagem.trim();
