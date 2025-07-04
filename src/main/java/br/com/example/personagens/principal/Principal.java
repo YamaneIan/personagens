@@ -45,6 +45,11 @@ public class Principal {
             System.out.println("\nCriar novo combate = 1, \nEncerrar programa = 2\n");
             this.opcao = leitura.nextInt();
 
+            if (opcao > 2){
+                System.out.println("\n!!! Comando nao encontrado, ENCERRANDO COMBATE !!!");
+
+            }
+
         } while (opcao == 1);
 
         System.out.println("\n!!! Programa encerrado, imprimindo lista de combates: !!! ");

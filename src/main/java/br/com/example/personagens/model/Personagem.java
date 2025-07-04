@@ -10,7 +10,9 @@ public class Personagem {
     private int vida;
     private int ataque;
     private int ataqueEspecial;
+    private int defesa;
     private boolean ataqueEspecialUsado = false;
+    private boolean defesaUsada = false;
 
     public void exibirStatus(){
         String status = "\nNome do jogador: " + nomeJogador
@@ -100,6 +102,14 @@ public class Personagem {
 
     public void usarAtaqueEspecial(){
         this.ataqueEspecialUsado = true;
+    }
+
+    public boolean isDefesaUsada(){
+        return defesaUsada;
+    }
+
+    public void usarDefesa(){
+        this.defesaUsada = true;
     }
 
 }

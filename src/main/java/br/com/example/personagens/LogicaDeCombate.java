@@ -2,6 +2,7 @@ package br.com.example.personagens;
 
 import br.com.example.personagens.model.Personagem;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LogicaDeCombate {
@@ -30,13 +31,18 @@ public class LogicaDeCombate {
         int opcao;
 
         do {
-            System.out.println("Atacar = 1\nDefender = 2\nEncerrar combate = 3\n");
+            System.out.println("\nQual sera a proxima acao?\nAtacar = 1\nDefender = 2\nEncerrar combate = 3\n");
             opcao = leitura.nextInt();
 
             if (opcao == 1) {
-                Ataque ataque = new Ataque();
-                ataque.atacar(personagem1,personagem2);
-                System.out.println("~~~ Acao de ataque encerrada ~~~ ");
+                try {
+                    Ataque ataque = new Ataque();
+                    ataque.atacar(personagem1,personagem2);
+                    System.out.println("~~~ Acao de ataque encerrada ~~~ ");
+                } catch (InputMismatchException e){
+                    System.out.println("\n!!! Escolha uma opcao valida !!!");
+                    System.out.println("~~~ Acao de ataque encerrada ~~~ ");
+                }
 
                 if (personagem1.getVida() == 0 || personagem2.getVida() == 0){
                     System.out.println("\n!!! Personagem derrotado !!!");
@@ -44,7 +50,8 @@ public class LogicaDeCombate {
                 }
 
             } else if (opcao == 2) {
-                //Logica de defesa
+                Defesa defesa = new Defesa();
+                defesa.defender(personagem1, personagem2);
                 System.out.println("~~~ Acao de defesa encerrada ~~~");
 
             } else if (opcao == 3) {
@@ -52,7 +59,7 @@ public class LogicaDeCombate {
                 break;
 
             } else {
-                System.out.println("!!! Este comando nao foi encontrado !!!");
+                System.out.println("!!! Comando nao encontrado !!!");
                 this.iniciarAcao(personagem1,personagem2);
 
             }
