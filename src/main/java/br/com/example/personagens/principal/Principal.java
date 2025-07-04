@@ -1,7 +1,7 @@
 package br.com.example.personagens.principal;
 
+import br.com.example.personagens.LogicaDeCombate;
 import br.com.example.personagens.command.PersonagemCommand;
-import br.com.example.personagens.model.Combate;
 import br.com.example.personagens.turno.Turno;
 
 import java.util.Scanner;
@@ -33,21 +33,21 @@ public class Principal {
             personagemCommand1.exibirStatus();
             personagemCommand2.exibirStatus();
 
-            Combate combate = new Combate();
+            LogicaDeCombate logicaDeCombate = new LogicaDeCombate();
 
-            combate.guardarPersonagem(personagemCommand1.getPersonagem(), personagemCommand2.getPersonagem());
+            logicaDeCombate.guardarPersonagem(personagemCommand1.getPersonagem(), personagemCommand2.getPersonagem());
 
-            combate.atacar(personagemCommand1.getPersonagem(),personagemCommand2.getPersonagem());
+            logicaDeCombate.iniciarAcao(personagemCommand1.getPersonagem(),personagemCommand2.getPersonagem());
 
-            turno.add(combate);
-            System.out.println(combate);
+            turno.add(logicaDeCombate);
+            System.out.println(logicaDeCombate);
 
             System.out.println("\nCriar novo combate = 1, \nEncerrar programa = 2\n");
             this.opcao = leitura.nextInt();
 
         } while (opcao == 1);
 
-        System.out.println("Programa encerrado, imprimindo lista de combates: ");
+        System.out.println("\n!!! Programa encerrado, imprimindo lista de combates: !!! ");
         turno.exibirStatus();
 
     }

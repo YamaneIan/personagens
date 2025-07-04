@@ -1,27 +1,10 @@
-package br.com.example.personagens.model;
+package br.com.example.personagens;
+
+import br.com.example.personagens.model.Personagem;
 
 import java.util.Scanner;
 
-public class Combate {
-
-    private Personagem personagem1;
-    private Personagem personagem2;
-
-    public void guardarPersonagem(Personagem personagem1, Personagem personagem2) {
-
-        System.out.println("\nAviso: Personagens guardados (Combate guardarPersonagem)");
-        this.personagem1 = personagem1;
-        this.personagem2 = personagem2;
-
-        personagem1.getNomePersonagem();
-        personagem1.getAtaque();
-        personagem1.getVida();
-
-        personagem2.getNomePersonagem();
-        personagem2.getAtaque();
-        personagem2.getVida();
-
-    }
+public class Ataque {
 
     public void atacar(Personagem personagem1, Personagem personagem2){
         Scanner leitura = new Scanner(System.in);
@@ -30,7 +13,6 @@ public class Combate {
         int atacarPrimeiro;
         int escolherAtaque;
 
-        do {
             System.out.printf("\nQuem vai atacar? \n%s = 1\n%s = 2\nEncerrar o combate = 3 : "
                     ,personagem1.getNomePersonagem(),personagem2.getNomePersonagem());
 
@@ -102,26 +84,10 @@ public class Combate {
                 }
 
             } else if (atacarPrimeiro == 3) {
-                System.out.println("~~~ Combate encerrado pelo jogador ~~~");
+                System.out.println("Encerrar ataque Testando Ataque.class ");
             }
 
-            if (vidaAtual1 == 0 || vidaAtual2 == 0){
-                System.out.println("\n~~~ Personagem derrotado ~~~");
-                break;
-            }
-        } while (true);
-        System.out.println("\n~~~ Combate encerrado ~~~");
+
     }
 
-    @Override
-    public String toString() {
-        return "\n~~~ Combate entre: " + this.personagem1.getNomePersonagem() + " e "
-                + this.personagem2.getNomePersonagem() + " ~~~\n~~~ " +
-
-                this.personagem1.getNomePersonagem() +
-                " ~~~\nVida final: " + this.personagem1.getVida() + "\n~~~ " +
-
-                this.personagem2.getNomePersonagem() +
-                "~~~ \nVida final: " + this.personagem2.getVida();
-    }
 }

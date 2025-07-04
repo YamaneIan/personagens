@@ -1,19 +1,20 @@
 package br.com.example.personagens.turno;
 
-import br.com.example.personagens.model.Combate;
+import br.com.example.personagens.LogicaDeCombate;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Turno {
 
-    private List<Combate> combates = new ArrayList<>();
+    private List<LogicaDeCombate> combates = new ArrayList<>();
 
-    public void add(Combate combate) {
+    public void add(LogicaDeCombate combate) {
         this.combates.add(combate);
     }
 
     public void exibirStatus(){
-       for (Combate combate : this.combates) {
+       for (LogicaDeCombate combate : this.combates) {
            System.out.println(combate.toString());
        }
     }
