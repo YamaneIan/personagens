@@ -12,14 +12,16 @@ public class Personagem {
     private int ataqueEspecial;
     private int defesa;
     private boolean ataqueEspecialUsado = false;
-    private boolean defesaUsada = false;
+    private boolean podeDefender = true;
+    private boolean estaDefendendo = false;
 
     public void exibirStatus(){
         String status = "\nNome do jogador: " + nomeJogador
                 + "\nNome do Personagem: " + nomePersonagem
                 + "\nVida : " + vida
                 + "\nAtaque: " + ataque
-                + "\nAtaque Especial " + ataqueEspecial;
+                + "\nAtaque Especial: " + ataqueEspecial
+                + "\nDefesa: " + defesa;
 
         System.out.println(status);
     }
@@ -38,6 +40,10 @@ public class Personagem {
 
     public int getAtaque() {
         return ataque;
+    }
+
+    public int getDefesa(){
+        return defesa;
     }
 
     public int getAtaqueEspecial(){ return ataqueEspecial;}
@@ -96,6 +102,15 @@ public class Personagem {
         this.ataqueEspecial = ataqueEspecial;
     }
 
+    public void setDefesa(int defesa){
+        if (defesa < 0){
+            throw new ValorNegativoException("A defesa deve ser um numero positivo");
+        } else if (defesa > 30) {
+            throw new ValorExcessivoException("Defesa maxima de 30 pontos")         ;
+        }
+        this.defesa = defesa;
+    }
+
     public boolean isAtaqueEspecialUsado(){
         return ataqueEspecialUsado;
     }
@@ -104,12 +119,17 @@ public class Personagem {
         this.ataqueEspecialUsado = true;
     }
 
-    public boolean isDefesaUsada(){
-        return defesaUsada;
-    }
-
     public void usarDefesa(){
-        this.defesaUsada = true;
+        if (podeDefender) {
+            estaDefendendo = true;
+            podeDefender = false;
+            System.out.println(nomePersonagem + " esta defendendo");
+        } else {
+            System.out.println("\n!!! Defesa nao pode ser usada duas vezes sem receber golpes !!!");
+        }
     }
 
+    public boolean isEstaDefendendo(){
+        return estaDefendendo;
+    }
 }

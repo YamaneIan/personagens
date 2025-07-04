@@ -106,6 +106,31 @@ public class PersonagemCommand {
         }
     }
 
+    public void criarDefesa(){
+        try {
+            System.out.println("Digite o valor da defesa de " +
+                    personagem.getNomePersonagem() + ". Limite de 30 ( Pontos de defesa sao utilizados apenas ao defender )");
+
+            personagem.setDefesa(leitura.nextInt());
+
+        } catch (ValorNegativoException e){
+            System.out.println("A defesa deve ser um numero positivo");
+            this.criarAtaqueEspecial();
+
+        } catch (ValorExcessivoException e){
+            System.out.println("Defesa de no maximo 30 pontos");
+            this.criarAtaqueEspecial();
+
+        } catch (InputMismatchException e){
+            System.out.println("Valor deve ser um numero positivo inteiro");
+            leitura.nextLine();
+            this.criarAtaqueEspecial();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public Personagem getPersonagem(){
         return personagem;
     }

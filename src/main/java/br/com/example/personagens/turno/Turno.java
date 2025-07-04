@@ -14,8 +14,8 @@ public class Turno {
     }
 
     public void exibirStatus(){
-       for (LogicaDeCombate combate : this.combates) {
-           System.out.println(combate.toString());
+       for (LogicaDeCombate logicaDeCombate : this.combates) {
+           System.out.println(logicaDeCombate.toString());
        }
     }
 
