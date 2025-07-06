@@ -84,6 +84,13 @@ public class Personagem {
         this.vida = vida;
     }
 
+    public void subtraiVida(int valor) {
+        this.vida = this.vida - valor;
+        if (this.vida < 0) {
+            this.vida = 0;
+        }
+    }
+
     public void setAtaque(int ataque) {
         if (ataque < 0) {
             throw new ValorNegativoException("O ataque deve ser maior que 0");
@@ -129,7 +136,7 @@ public class Personagem {
         }
     }
 
-    public boolean isEstaDefendendo(){
+    public boolean possuiDefesa(){
         return estaDefendendo;
     }
 }
