@@ -129,7 +129,18 @@ public class Personagem {
         }
     }
 
-    public boolean isEstaDefendendo(){
+    public boolean isDefendendo(){
         return estaDefendendo;
+    }
+
+    public void subtrairVida(int valor){
+        this.vida -= valor;
+        if (this.vida < 0){
+            this.vida = 0;
+        }
+    }
+
+    public void anunciarVencedor(){
+
     }
 }
