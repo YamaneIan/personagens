@@ -58,7 +58,7 @@ public class Ataque {
             acao(personagem1, personagem2, leitura);
             //Jogador 2 vai atacar
         } else if (atacarPrimeiro == 2) {
-            acao(personagem1, personagem2, leitura);
+            acao(personagem2, personagem1, leitura);
         } else if (atacarPrimeiro == 3) {
             System.out.println("Cancelando o ataque Testando Ataque.class ");
         } else{
