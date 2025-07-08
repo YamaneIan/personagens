@@ -49,7 +49,6 @@ public class Principal {
 
             if (opcao > 2){
                 System.out.println("\n!!! Comando nao encontrado, ENCERRANDO COMBATE !!!");
-
             }
 
         } while (opcao == 1);

@@ -1,5 +1,6 @@
 package br.com.example.personagens.model;
 
+import br.com.example.personagens.LogicaDeCombate;
 import br.com.example.personagens.exception.NomeInvalidoException;
 import br.com.example.personagens.exception.ValorExcessivoException;
 import br.com.example.personagens.exception.ValorNegativoException;
@@ -15,7 +16,7 @@ public class Personagem {
     private boolean podeDefender = true;
     private boolean estaDefendendo = false;
 
-    public void exibirStatus(){
+    public void exibirStatus() {
         String status = "\nNome do jogador: " + nomeJogador
                 + "\nNome do Personagem: " + nomePersonagem
                 + "\nVida : " + vida
@@ -42,17 +43,19 @@ public class Personagem {
         return ataque;
     }
 
-    public int getDefesa(){
+    public int getDefesa() {
         return defesa;
     }
 
-    public int getAtaqueEspecial(){ return ataqueEspecial;}
+    public int getAtaqueEspecial() {
+        return ataqueEspecial;
+    }
 
 
-    public void setNomeJogador(String nomeJogador)  {
+    public void setNomeJogador(String nomeJogador) {
 
-        if (nomeJogador == null || nomeJogador.trim().isEmpty()){
-            throw new NomeInvalidoException ("Nome nao pode estar vazio");
+        if (nomeJogador == null || nomeJogador.trim().isEmpty()) {
+            throw new NomeInvalidoException("Nome nao pode estar vazio");
         }
 
         String nomeLimpo = nomeJogador.trim();
@@ -76,9 +79,9 @@ public class Personagem {
     }
 
     public void setVida(int vida) {
-        if (vida < 0){
+        if (vida < 0) {
             throw new ValorNegativoException("A vida deve ser maior que 0");
-        } else if (vida > 250){
+        } else if (vida > 250) {
             throw new ValorExcessivoException("Vida maxima de 250 pontos");
         }
         this.vida = vida;
@@ -102,24 +105,24 @@ public class Personagem {
         this.ataqueEspecial = ataqueEspecial;
     }
 
-    public void setDefesa(int defesa){
-        if (defesa < 0){
+    public void setDefesa(int defesa) {
+        if (defesa < 0) {
             throw new ValorNegativoException("A defesa deve ser um numero positivo");
         } else if (defesa > 30) {
-            throw new ValorExcessivoException("Defesa maxima de 30 pontos")         ;
+            throw new ValorExcessivoException("Defesa maxima de 30 pontos");
         }
         this.defesa = defesa;
     }
 
-    public boolean isAtaqueEspecialUsado(){
+    public boolean isAtaqueEspecialUsado() {
         return ataqueEspecialUsado;
     }
 
-    public void usarAtaqueEspecial(){
+    public void usarAtaqueEspecial() {
         this.ataqueEspecialUsado = true;
     }
 
-    public void usarDefesa(){
+    public void usarDefesa() {
         if (podeDefender) {
             estaDefendendo = true;
             podeDefender = false;
@@ -129,18 +132,15 @@ public class Personagem {
         }
     }
 
-    public boolean isDefendendo(){
+    public boolean isDefendendo() {
         return estaDefendendo;
     }
 
-    public void subtrairVida(int valor){
+    public void subtrairVida(int valor) {
         this.vida -= valor;
-        if (this.vida < 0){
+        if (this.vida < 0) {
             this.vida = 0;
         }
     }
 
-    public void anunciarVencedor(){
-
-    }
 }

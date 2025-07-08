@@ -37,14 +37,14 @@ public class LogicaDeCombate {
             if (opcao == 1) {
                 try {
                     Ataque ataque = new Ataque();
-                    ataque.atacar(personagem1,personagem2);
+                    ataque.atacar(personagem1, personagem2);
                     System.out.println("~~~ Acao de ataque encerrada ~~~ ");
-                } catch (InputMismatchException e){
+                } catch (InputMismatchException e) {
                     System.out.println("\n!!! Escolha uma opcao valida !!!");
                     System.out.println("~~~ Acao de ataque encerrada ~~~ ");
                 }
 
-                if (personagem1.getVida() == 0 || personagem2.getVida() == 0){
+                if (personagem1.getVida() == 0 || personagem2.getVida() == 0) {
                     System.out.println("\n!!! Personagem derrotado !!!");
                     break;
                 }
@@ -60,7 +60,7 @@ public class LogicaDeCombate {
 
             } else {
                 System.out.println("!!! Comando nao encontrado !!!");
-                this.iniciarAcao(personagem1,personagem2);
+                this.iniciarAcao(personagem1, personagem2);
 
             }
 
@@ -69,6 +69,16 @@ public class LogicaDeCombate {
 
     @Override
     public String toString() {
+        String resultado = "";
+        
+        if (personagem1.getVida() > personagem2.getVida()) {
+            resultado = personagem1.getNomePersonagem() + " venceu!!! ";
+        } else if (personagem1.getVida() < personagem2.getVida()) {
+            resultado = personagem2.getNomePersonagem() + " venceu!!! ";
+        } else if (personagem1.getVida() == personagem2.getVida()) {
+            resultado = "O combate empatou!!! ";
+        }
+
         return "\n~~~ Combate entre: " + this.personagem1.getNomePersonagem() + " e "
                 + this.personagem2.getNomePersonagem() + " ~~~\n~~~ " +
 
@@ -76,7 +86,7 @@ public class LogicaDeCombate {
                 " ~~~\nVida final: " + this.personagem1.getVida() + "\n~~~ " +
 
                 this.personagem2.getNomePersonagem() +
-                "~~~ \nVida final: " + this.personagem2.getVida();
+                "~~~ \nVida final: " + this.personagem2.getVida() + "\n" +
+                resultado;
     }
-
 }
