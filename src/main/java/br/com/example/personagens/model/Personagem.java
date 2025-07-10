@@ -136,7 +136,7 @@ public class Personagem {
         return estaDefendendo;
     }
 
-    public void subtrairVida(int valor) {
+    public void subtrairVida(double valor) {
         this.vida -= valor;
         if (this.vida < 0) {
             this.vida = 0;
