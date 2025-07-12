@@ -18,10 +18,10 @@ public class Personagem {
     public void exibirStatus() {
         String status = "\nNome do jogador: " + nomeJogador
                 + "\nNome do Personagem: " + nomePersonagem
-                + "\nVida : " + vida/100
-                + "\nAtaque: " + ataque/100
-                + "\nAtaque Especial: " + ataqueEspecial/100
-                + "\nDefesa: " + defesa/100;
+                + "\nVida : " + vida
+                + "\nAtaque: " + ataque
+                + "\nAtaque Especial: " + ataqueEspecial
+                + "\nDefesa: " + defesa;
 
         System.out.println(status);
     }
@@ -83,7 +83,7 @@ public class Personagem {
         } else if (vida > 250) {
             throw new ValorExcessivoException("Vida maxima de 250 pontos");
         }
-        this.vida = vida*100;
+        this.vida = vida;
     }
 
     public void setAtaque(int ataque) {
@@ -92,7 +92,7 @@ public class Personagem {
         } else if (ataque > 50) {
             throw new ValorExcessivoException("Ataque maximo de 50 pontos");
         }
-        this.ataque = ataque*100;
+        this.ataque = ataque;
     }
 
     public void setAtaqueEspecial(int ataqueEspecial) {
@@ -101,7 +101,7 @@ public class Personagem {
         } else if (ataqueEspecial > 150) {
             throw new ValorExcessivoException("Ataque maximo de 150 pontos");
         }
-        this.ataqueEspecial = ataqueEspecial*100;
+        this.ataqueEspecial = ataqueEspecial;
     }
 
     public void setDefesa(int defesa) {
@@ -110,7 +110,7 @@ public class Personagem {
         } else if (defesa > 30) {
             throw new ValorExcessivoException("Defesa maxima de 30 pontos");
         }
-        this.defesa = defesa*100;
+        this.defesa = defesa;
     }
 
     public boolean isAtaqueEspecialUsado() {

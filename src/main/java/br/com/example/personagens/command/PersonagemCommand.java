@@ -1,6 +1,5 @@
 package br.com.example.personagens.command;
 
-import br.com.example.personagens.LogicaDeCombate;
 import br.com.example.personagens.exception.NomeInvalidoException;
 import br.com.example.personagens.exception.ValorExcessivoException;
 import br.com.example.personagens.exception.ValorNegativoException;
