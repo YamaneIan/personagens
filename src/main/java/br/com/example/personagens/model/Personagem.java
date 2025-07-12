@@ -7,10 +7,10 @@ import br.com.example.personagens.exception.ValorNegativoException;
 public class Personagem {
     private String nomeJogador;
     private String nomePersonagem;
-    private int vida;
-    private int ataque;
-    private int ataqueEspecial;
-    private int defesa;
+    private double vida;
+    private double ataque;
+    private double ataqueEspecial;
+    private double defesa;
     private boolean ataqueEspecialUsado = false;
     private boolean podeDefender = true;
     private boolean estaDefendendo = false;
@@ -34,19 +34,19 @@ public class Personagem {
         return nomePersonagem;
     }
 
-    public int getVida() {
+    public double getVida() {
         return vida;
     }
 
-    public int getAtaque() {
+    public double getAtaque() {
         return ataque;
     }
 
-    public int getDefesa() {
+    public double getDefesa() {
         return defesa;
     }
 
-    public int getAtaqueEspecial() {
+    public double getAtaqueEspecial() {
         return ataqueEspecial;
     }
 
@@ -77,7 +77,7 @@ public class Personagem {
         this.nomePersonagem = nomeLimpo;
     }
 
-    public void setVida(int vida) {
+    public void setVida(double vida) {
         if (vida < 0) {
             throw new ValorNegativoException("A vida deve ser maior que 0");
         } else if (vida > 250) {
@@ -86,7 +86,7 @@ public class Personagem {
         this.vida = vida;
     }
 
-    public void setAtaque(int ataque) {
+    public void setAtaque(double ataque) {
         if (ataque < 0) {
             throw new ValorNegativoException("O ataque deve ser maior que 0");
         } else if (ataque > 50) {
@@ -95,7 +95,7 @@ public class Personagem {
         this.ataque = ataque;
     }
 
-    public void setAtaqueEspecial(int ataqueEspecial) {
+    public void setAtaqueEspecial(double ataqueEspecial) {
         if (ataqueEspecial < 0) {
             throw new ValorNegativoException("O ataque especial deve ser maior que 0");
         } else if (ataqueEspecial > 150) {
@@ -104,7 +104,7 @@ public class Personagem {
         this.ataqueEspecial = ataqueEspecial;
     }
 
-    public void setDefesa(int defesa) {
+    public void setDefesa(double defesa) {
         if (defesa < 0) {
             throw new ValorNegativoException("A defesa deve ser um numero positivo");
         } else if (defesa > 30) {

@@ -1,7 +1,6 @@
 package br.com.example.personagens.turno;
 
 import br.com.example.personagens.LogicaDeCombate;
-import br.com.example.personagens.principal.Principal;
 
 import java.util.ArrayList;
 import java.util.List;

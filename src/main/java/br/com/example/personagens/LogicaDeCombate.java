@@ -65,6 +65,8 @@ public class LogicaDeCombate {
             }
 
         } while (true);
+
+
     }
 
     @Override
@@ -79,14 +81,17 @@ public class LogicaDeCombate {
             resultado = "O combate empatou!!! ";
         }
 
-        return "\n~~~ Combate entre: " + this.personagem1.getNomePersonagem() + " e "
-                + this.personagem2.getNomePersonagem() + " ~~~\n~~~ " +
+        return "\n~~~ Combate entre: " + this.personagem1.getNomePersonagem()
+                + " (" + this.personagem1.getNomeJogador()
+                + ") e " + this.personagem2.getNomePersonagem()
+                + " (" + this.personagem2.getNomeJogador()
+                + ") ~~~\n~~~ " +
 
                 this.personagem1.getNomePersonagem() +
-                " ~~~\nVida final: " + this.personagem1.getVida()/100 + "\n~~~ " +
+                " ~~~\nVida final: " + this.personagem1.getVida() + "\n~~~ " +
 
                 this.personagem2.getNomePersonagem() +
-                "~~~ \nVida final: " + this.personagem2.getVida()/100 + "\n" +
+                "~~~ \nVida final: " + this.personagem2.getVida() + "\n" +
                 resultado;
     }
 }
