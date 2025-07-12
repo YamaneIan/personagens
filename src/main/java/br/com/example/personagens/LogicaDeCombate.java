@@ -83,10 +83,10 @@ public class LogicaDeCombate {
                 + this.personagem2.getNomePersonagem() + " ~~~\n~~~ " +
 
                 this.personagem1.getNomePersonagem() +
-                " ~~~\nVida final: " + this.personagem1.getVida() + "\n~~~ " +
+                " ~~~\nVida final: " + this.personagem1.getVida()/100 + "\n~~~ " +
 
                 this.personagem2.getNomePersonagem() +
-                "~~~ \nVida final: " + this.personagem2.getVida() + "\n" +
+                "~~~ \nVida final: " + this.personagem2.getVida()/100 + "\n" +
                 resultado;
     }
 }

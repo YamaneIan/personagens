@@ -17,9 +17,9 @@ public class Ataque {
         atacarPrimeiro = leitura.nextInt();
 
         if (atacarPrimeiro == 1) {
-            acao(personagem1, personagem2,leitura);
+            acao(personagem1, personagem2, leitura);
         } else if (atacarPrimeiro == 2) {
-            acao(personagem2, personagem1,leitura);
+            acao(personagem2, personagem1, leitura);
         } else if (atacarPrimeiro == 3) {
             System.out.println("Cancelando o ataque Testando Ataque.class ");
         } else{
@@ -30,46 +30,58 @@ public class Ataque {
     private void acao(Personagem atacante, Personagem defensor, Scanner leitura){
         Random random = new Random();
         boolean criticoNormal = random.nextInt(100) < 25;
-        double multiplicadorNormal = criticoNormal ? 2 : 1;
-        boolean criticoEspecial = random.nextInt(100) < 5;
-        double multiplicadorEspecial = criticoEspecial ? 1.5 : 1;
+        int multiplicadorNormal = criticoNormal ? 150 : 100;
+        boolean criticoEspecial = random.nextInt(100) < 10;
+        int multiplicadorEspecial = criticoEspecial ? 125 : 100;
 
         System.out.println("\nQual ataque usar?\nAtaque normal = 1\nAtaque especial = 2 ");
         int escolherAtaque = leitura.nextInt();
 
         if (escolherAtaque == 1) {
             if (defensor.isDefendendo()){
-                double ataqueFinal = atacante.getAtaque() - defensor.getDefesa();
-                ataqueFinal *= multiplicadorNormal;
+                double ataqueFinal = (atacante.getAtaque() * multiplicadorNormal) /100;
+                ataqueFinal -= defensor.getDefesa();
+                if (ataqueFinal < 0) ataqueFinal = 0;
                 defensor.subtrairVida(ataqueFinal);
+                defensor.resetDefesa();
             } else if (!defensor.isDefendendo()){
-                double ataqueFinal = atacante.getAtaque() * multiplicadorNormal;
-                defensor.subtrairVida(ataqueFinal);
+                int ataqueFinal = (atacante.getAtaque() * multiplicadorNormal);
+                defensor.subtrairVida(ataqueFinal/100);
             }
 
-            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque normal de "
-                    + (criticoNormal ? " com um CRÍTICO de "
-                    + atacante.getAtaque() * multiplicadorNormal : atacante.getAtaque())
+            int danoCausado = criticoNormal
+                    ? (atacante.getAtaque() * multiplicadorNormal) /100
+                    : atacante.getAtaque();
+
+            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque normal "
+                    + (criticoNormal ? " com um CRÍTICO de " : " com " )
+                    + danoCausado/100
                     + " pontos de dano!!!"
                     + "\nVida atual de " + defensor.getNomePersonagem()
-                    + ": " + defensor.getVida());
+                    + ": " + defensor.getVida()/100);
 
         } else if (escolherAtaque == 2 && !atacante.isAtaqueEspecialUsado()) {
             if (defensor.isDefendendo()){
-                double ataqueFinal = atacante.getAtaqueEspecial() - defensor.getDefesa();
-                ataqueFinal *= multiplicadorEspecial;
+                double ataqueFinal = (atacante.getAtaqueEspecial() * multiplicadorEspecial) /100;
+                ataqueFinal -= defensor.getDefesa();
+                if (ataqueFinal < 0) ataqueFinal = 0;
                 defensor.subtrairVida(ataqueFinal);
+                defensor.resetDefesa();
             } else if (!defensor.isDefendendo()){
                 double ataqueFinal = atacante.getAtaqueEspecial() * multiplicadorEspecial;
-                defensor.subtrairVida(ataqueFinal);
+                defensor.subtrairVida(ataqueFinal/100);
             }
 
-            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque especial de "
-                    + (criticoEspecial ? " com um CRÍTICO de "
-                    + atacante.getAtaqueEspecial() * multiplicadorEspecial : atacante.getAtaqueEspecial())
+            int danoCausado = criticoEspecial
+                    ? (atacante.getAtaqueEspecial() * multiplicadorEspecial) / 100
+                    : atacante.getAtaqueEspecial();
+
+            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque especial"
+                    + (criticoEspecial ? " com um CRÍTICO de " : " com " )
+                    + danoCausado/100
                     + " pontos de dano!!!"
                     + "\nVida atual de " + defensor.getNomePersonagem()
-                    + ": " + defensor.getVida());
+                    + ": " + defensor.getVida()/100);
             atacante.usarAtaqueEspecial();
         } else if (atacante.isAtaqueEspecialUsado()){
             System.out.println("Ataque especial ja foi utilizado");
