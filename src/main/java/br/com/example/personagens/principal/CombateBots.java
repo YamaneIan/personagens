@@ -1,5 +1,6 @@
 package br.com.example.personagens.principal;
 
+import br.com.example.personagens.LogicaDeCombateBot;
 import br.com.example.personagens.command.BotCommand;
 import br.com.example.personagens.command.PersonagemCommand;
 
@@ -12,22 +13,25 @@ public class CombateBots {
 
     public void combateBot(){
         do{
-            PersonagemCommand personagem = new PersonagemCommand();
-            BotCommand bot = new BotCommand();
+            PersonagemCommand personagemCommand = new PersonagemCommand();
+            BotCommand botCommand = new BotCommand();
 
-            personagem.criarNomeJogador();
-            personagem.criarNomePersonagem();
-            personagem.criarVida();
-            personagem.criarAtaque();
-            personagem.criarAtaqueEspecial();
-            personagem.criarDefesa();
+            personagemCommand.criarNomeJogador();
+            personagemCommand.criarNomePersonagem();
+            personagemCommand.criarVida();
+            personagemCommand.criarAtaque();
+            personagemCommand.criarAtaqueEspecial();
+            personagemCommand.criarDefesa();
 
-            bot.criarNomeBot();
-            bot.criarVidaBot();
-            bot.criarAtaqueBot();
+            botCommand.criarNomeBot();
+            botCommand.criarVida();
+            botCommand.criarAtaque();
 
-            personagem.exibirStatus();
-            bot.exibirStatusBot();
+            personagemCommand.exibirStatus();
+            botCommand.exibirStatusBot();
+
+            LogicaDeCombateBot logicaDeCombateBot = new LogicaDeCombateBot();
+            logicaDeCombateBot.guardarPersonagem(personagemCommand.getPersonagem(), botCommand.getBot());
 
             System.out.println("\nCriar novo combate = 1, \nEncerrar combate = 2\n");
             this.opcao = leitura.nextInt();

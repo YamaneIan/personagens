@@ -6,6 +6,26 @@ public class Bot {
     private double vida;
     private double ataque;
 
+    public void exibirStatus() {
+        String status = "\nNome do bot: " + nomeBot
+                + "\nVida : " + vida
+                + "\nAtaque: " + ataque;
+
+        System.out.println(status);
+    }
+
+    public String getNomeBot() {
+        return nomeBot;
+    }
+
+    public double getVida() {
+        return vida;
+    }
+
+    public double getAtaque() {
+        return ataque;
+    }
+
     public void exibirStatusBot() {
         String status = "\nNome do inimigo: " + nomeBot
                 + "\nVida : " + vida
