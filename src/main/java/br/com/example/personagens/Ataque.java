@@ -12,7 +12,7 @@ public class Ataque {
         int atacarPrimeiro;
 
         System.out.printf("\nQuem vai atacar? \n%s = 1\n%s = 2\nCancelar o ataque = 3 : "
-                ,personagem1.getNomePersonagem(),personagem2.getNomePersonagem());
+                ,personagem1.getNome(),personagem2.getNome());
 
         atacarPrimeiro = leitura.nextInt();
 
@@ -53,11 +53,11 @@ public class Ataque {
                     ? atacante.getAtaque() * multiplicadorNormal
                     : atacante.getAtaque();
 
-            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque normal "
+            System.out.println("\n" + atacante.getNome() + " atacou com o ataque normal "
                     + (criticoNormal ? " com um CRÍTICO de " : " com " )
                     + danoCausado
                     + " pontos de dano!!!"
-                    + "\nVida atual de " + defensor.getNomePersonagem()
+                    + "\nVida atual de " + defensor.getNome()
                     + ": " + defensor.getVida());
 
         } else if (escolherAtaque == 2 && !atacante.isAtaqueEspecialUsado()) {
@@ -76,11 +76,11 @@ public class Ataque {
                     ? atacante.getAtaqueEspecial() * multiplicadorEspecial
                     : atacante.getAtaqueEspecial();
 
-            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque especial"
+            System.out.println("\n" + atacante.getNome() + " atacou com o ataque especial"
                     + (criticoEspecial ? " com um CRÍTICO de " : " com " )
                     + danoCausado
                     + " pontos de dano!!!"
-                    + "\nVida atual de " + defensor.getNomePersonagem()
+                    + "\nVida atual de " + defensor.getNome()
                     + ": " + defensor.getVida());
             atacante.usarAtaqueEspecial();
         } else if (atacante.isAtaqueEspecialUsado()){

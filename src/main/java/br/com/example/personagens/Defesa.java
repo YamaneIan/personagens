@@ -11,7 +11,7 @@ public class Defesa {
         int defender;
 
         System.out.printf("\nQuem vai defender? \n%s = 1\n%s = 2\nCancelar a defesa = 3 :\n"
-                ,personagem1.getNomePersonagem(),personagem2.getNomePersonagem());
+                ,personagem1.getNome(),personagem2.getNome());
         defender = leitura.nextInt();
 
         if (defender == 1){

@@ -15,7 +15,7 @@ public class LogicaDeCombateBot {
         this.personagem = personagem;
         this.bot = bot;
 
-        personagem.getNomePersonagem();
+        personagem.getNome();
         personagem.getAtaque();
         personagem.getVida();
 
@@ -26,22 +26,22 @@ public class LogicaDeCombateBot {
         String resultado = "";
 
         if (personagem.getVida() > bot.getVida()) {
-            resultado = personagem.getNomePersonagem() + " venceu!!! ";
+            resultado = personagem.getNome() + " venceu!!! ";
         } else if (personagem.getVida() < bot.getVida()) {
-            resultado = bot.getNomeBot() + " venceu!!! ";
+            resultado = bot.getNome() + " venceu!!! ";
         } else if (personagem.getVida() == bot.getVida()) {
             resultado = "O combate empatou!!! ";
         }
 
-        return "\n~~~ Combate entre: " + this.personagem.getNomePersonagem()
+        return "\n~~~ Combate entre: " + this.personagem.getNome()
                 + " (" + this.personagem.getNomeJogador()
-                + ") e " + this.bot.getNomeBot()
+                + ") e " + this.bot.getNome()
                 +
 
-                this.personagem.getNomePersonagem() +
+                this.personagem.getNome() +
                 " ~~~\nVida final: " + this.personagem.getVida() + "\n~~~ " +
 
-                this.bot.getNomeBot() +
+                this.bot.getNome() +
                 "~~~ \nVida final: " + this.bot.getVida() + "\n" +
                 resultado;
     }

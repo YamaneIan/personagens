@@ -6,7 +6,7 @@ import br.com.example.personagens.exception.ValorNegativoException;
 
 public class Personagem {
     private String nomeJogador;
-    private String nomePersonagem;
+    private String nome;
     private double vida;
     private double ataque;
     private double ataqueEspecial;
@@ -17,7 +17,7 @@ public class Personagem {
 
     public void exibirStatus() {
         String status = "\nNome do jogador: " + nomeJogador
-                + "\nNome do Personagem: " + nomePersonagem
+                + "\nNome do Personagem: " + nome
                 + "\nVida : " + vida
                 + "\nAtaque: " + ataque
                 + "\nAtaque Especial: " + ataqueEspecial
@@ -30,8 +30,8 @@ public class Personagem {
         return nomeJogador;
     }
 
-    public String getNomePersonagem() {
-        return nomePersonagem;
+    public String getNome() {
+        return nome;
     }
 
     public double getVida() {
@@ -64,17 +64,17 @@ public class Personagem {
         this.nomeJogador = nomeLimpo;
     }
 
-    public void setNomePersonagem(String nomePersonagem) {
+    public void setNome(String nome) {
 
-        if (nomePersonagem.length() < 3) {
+        if (nome.length() < 3) {
             throw new NomeInvalidoException("Nome do personagem deve conter 3 ou mais caracteres");
         }
 
-        String nomeLimpo = nomePersonagem.trim();
+        String nomeLimpo = nome.trim();
 
         nomeLimpo = nomeLimpo.replaceAll("\\s+", " ");
 
-        this.nomePersonagem = nomeLimpo;
+        this.nome = nomeLimpo;
     }
 
     public void setVida(double vida) {
@@ -125,7 +125,7 @@ public class Personagem {
         if (podeDefender) {
             estaDefendendo = true;
             podeDefender = false;
-            System.out.println(nomePersonagem + " esta defendendo");
+            System.out.println(nome + " esta defendendo");
         } else {
             System.out.println("\n!!! Defesa nao pode ser usada duas vezes sem receber golpes !!!");
         }

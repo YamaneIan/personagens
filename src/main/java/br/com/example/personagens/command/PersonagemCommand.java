@@ -27,7 +27,7 @@ public class PersonagemCommand {
     public void criarNomePersonagem(){
         try {
             System.out.println("Digite o nome do personagem: ");
-            this.personagem.setNomePersonagem(leitura.nextLine());
+            this.personagem.setNome(leitura.nextLine());
 
         } catch (NomeInvalidoException e){
             System.out.println("Nome do personagem deve conter 3 ou mais caracteres");
@@ -37,7 +37,7 @@ public class PersonagemCommand {
 
     public void criarVida(){
         try {
-            System.out.println("Digite a vida de " + personagem.getNomePersonagem() + ". Limite de 250");
+            System.out.println("Digite a vida de " + personagem.getNome() + ". Limite de 250");
             personagem.setVida(leitura.nextInt());
 
         } catch (ValorNegativoException e) {
@@ -60,7 +60,7 @@ public class PersonagemCommand {
 
     public void criarAtaque(){
         try {
-            System.out.println("Digite o ataque de " + personagem.getNomePersonagem() + ". Limite de 50");
+            System.out.println("Digite o ataque de " + personagem.getNome() + ". Limite de 50");
             personagem.setAtaque(leitura.nextInt());
 
         } catch (ValorNegativoException e) {
@@ -84,7 +84,7 @@ public class PersonagemCommand {
     public void criarAtaqueEspecial(){
         try {
             System.out.println("Digite o valor do ataque especial de " +
-                    personagem.getNomePersonagem() + ". Limite de 150");
+                    personagem.getNome() + ". Limite de 150");
 
             personagem.setAtaqueEspecial(leitura.nextInt());
 
@@ -109,7 +109,7 @@ public class PersonagemCommand {
     public void criarDefesa(){
         try {
             System.out.println("Digite o valor da defesa de " +
-                    personagem.getNomePersonagem() + ". Limite de 30 ( Pontos de defesa sao utilizados apenas ao defender )");
+                    personagem.getNome() + ". Limite de 30 ( Pontos de defesa sao utilizados apenas ao defender )");
 
             personagem.setDefesa(leitura.nextInt());
 
