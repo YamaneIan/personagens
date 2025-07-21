@@ -2,47 +2,10 @@ package br.com.example.personagens;
 
 import br.com.example.personagens.model.Personagem;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Ataque {
-
-    private void acao(Personagem atacante, Personagem defensor, Scanner leitura) {
-        int escolherAtaque;
-
-        System.out.println("\nQual ataque usar?\nAtaque normal = 1\nAtaque especial = 2 ");
-        escolherAtaque = leitura.nextInt();
-
-        if (escolherAtaque == 1) {
-            if (defensor.possuiDefesa()){
-                int ataqueFinal = atacante.getAtaque() - defensor.getDefesa();
-                defensor.subtraiVida(ataqueFinal);
-                System.out.println("\nDefesa Usada!!!\n" + defensor.getNomePersonagem());
-            } else {
-                defensor.subtraiVida(atacante.getAtaque());
-            }
-            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque normal de "
-                + atacante.getAtaque()
-                + " pontos de dano!!!\nVida atual de " + defensor.getNomePersonagem()
-                + ": " + defensor.getVida());
-
-        } else if (escolherAtaque == 2) {
-            if (!atacante.isAtaqueEspecialUsado()) {
-                if (defensor.possuiDefesa()){
-                    int ataqueFinal = atacante.getAtaqueEspecial() - defensor.getDefesa();
-                    defensor.subtraiVida(ataqueFinal);
-                } else {
-                    defensor.subtraiVida(atacante.getAtaqueEspecial());
-                }
-                atacante.usarAtaqueEspecial();
-                System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o especial de "
-                    + atacante.getAtaqueEspecial()
-                    + " pontos de dano!!!\nVida atual de " + defensor.getNomePersonagem()
-                    + ": " + defensor.getVida());
-            }
-        } else {
-            System.out.println("Escolha uma das opcoes ou seu ataque especial ja foi utilizado");
-        }
-    }
 
     public void atacar(Personagem personagem1, Personagem personagem2){
         Scanner leitura = new Scanner(System.in);
@@ -53,10 +16,8 @@ public class Ataque {
 
         atacarPrimeiro = leitura.nextInt();
 
-        //Jogador 1 vai atacar
         if (atacarPrimeiro == 1) {
             acao(personagem1, personagem2, leitura);
-            //Jogador 2 vai atacar
         } else if (atacarPrimeiro == 2) {
             acao(personagem2, personagem1, leitura);
         } else if (atacarPrimeiro == 3) {
@@ -64,7 +25,68 @@ public class Ataque {
         } else{
             System.out.println("!!! Comando nao encontrado !!!");
         }
-
     }
 
+    private void acao(Personagem atacante, Personagem defensor, Scanner leitura){
+        Random random = new Random();
+        boolean criticoNormal = random.nextInt(100) < 25;
+        double multiplicadorNormal = criticoNormal ? 1.5 : 1;
+        boolean criticoEspecial = random.nextInt(100) < 10;
+        double multiplicadorEspecial = criticoEspecial ? 1.25 : 1;
+
+        System.out.println("\nQual ataque usar?\nAtaque normal = 1\nAtaque especial = 2 ");
+        int escolherAtaque = leitura.nextInt();
+
+        if (escolherAtaque == 1) {
+            if (defensor.isDefendendo()){
+                double ataqueFinal = atacante.getAtaque() * multiplicadorNormal;
+                ataqueFinal -= defensor.getDefesa();
+                if (ataqueFinal < 0) ataqueFinal = 0;
+                defensor.subtrairVida(ataqueFinal);
+                defensor.resetDefesa();
+            } else if (!defensor.isDefendendo()){
+                double ataqueFinal = atacante.getAtaque() * multiplicadorNormal;
+                defensor.subtrairVida(ataqueFinal);
+            }
+
+            double danoCausado = criticoNormal
+                    ? atacante.getAtaque() * multiplicadorNormal
+                    : atacante.getAtaque();
+
+            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque normal "
+                    + (criticoNormal ? " com um CRÍTICO de " : " com " )
+                    + danoCausado
+                    + " pontos de dano!!!"
+                    + "\nVida atual de " + defensor.getNomePersonagem()
+                    + ": " + defensor.getVida());
+
+        } else if (escolherAtaque == 2 && !atacante.isAtaqueEspecialUsado()) {
+            if (defensor.isDefendendo()){
+                double ataqueFinal = (atacante.getAtaqueEspecial() * multiplicadorEspecial);
+                ataqueFinal -= defensor.getDefesa();
+                if (ataqueFinal < 0) ataqueFinal = 0;
+                defensor.subtrairVida(ataqueFinal);
+                defensor.resetDefesa();
+            } else if (!defensor.isDefendendo()){
+                double ataqueFinal = atacante.getAtaqueEspecial() * multiplicadorEspecial;
+                defensor.subtrairVida(ataqueFinal);
+            }
+
+            double danoCausado = criticoEspecial
+                    ? atacante.getAtaqueEspecial() * multiplicadorEspecial
+                    : atacante.getAtaqueEspecial();
+
+            System.out.println("\n" + atacante.getNomePersonagem() + " atacou com o ataque especial"
+                    + (criticoEspecial ? " com um CRÍTICO de " : " com " )
+                    + danoCausado
+                    + " pontos de dano!!!"
+                    + "\nVida atual de " + defensor.getNomePersonagem()
+                    + ": " + defensor.getVida());
+            atacante.usarAtaqueEspecial();
+        } else if (atacante.isAtaqueEspecialUsado()){
+            System.out.println("Ataque especial ja foi utilizado");
+        } else {
+            System.out.println("Comando nao encontrado");
+        }
+    }
 }

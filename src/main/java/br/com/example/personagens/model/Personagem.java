@@ -7,15 +7,15 @@ import br.com.example.personagens.exception.ValorNegativoException;
 public class Personagem {
     private String nomeJogador;
     private String nomePersonagem;
-    private int vida;
-    private int ataque;
-    private int ataqueEspecial;
-    private int defesa;
+    private double vida;
+    private double ataque;
+    private double ataqueEspecial;
+    private double defesa;
     private boolean ataqueEspecialUsado = false;
     private boolean podeDefender = true;
     private boolean estaDefendendo = false;
 
-    public void exibirStatus(){
+    public void exibirStatus() {
         String status = "\nNome do jogador: " + nomeJogador
                 + "\nNome do Personagem: " + nomePersonagem
                 + "\nVida : " + vida
@@ -34,25 +34,27 @@ public class Personagem {
         return nomePersonagem;
     }
 
-    public int getVida() {
+    public double getVida() {
         return vida;
     }
 
-    public int getAtaque() {
+    public double getAtaque() {
         return ataque;
     }
 
-    public int getDefesa(){
+    public double getDefesa() {
         return defesa;
     }
 
-    public int getAtaqueEspecial(){ return ataqueEspecial;}
+    public double getAtaqueEspecial() {
+        return ataqueEspecial;
+    }
 
 
-    public void setNomeJogador(String nomeJogador)  {
+    public void setNomeJogador(String nomeJogador) {
 
-        if (nomeJogador == null || nomeJogador.trim().isEmpty()){
-            throw new NomeInvalidoException ("Nome nao pode estar vazio");
+        if (nomeJogador == null || nomeJogador.trim().isEmpty()) {
+            throw new NomeInvalidoException("Nome nao pode estar vazio");
         }
 
         String nomeLimpo = nomeJogador.trim();
@@ -75,23 +77,16 @@ public class Personagem {
         this.nomePersonagem = nomeLimpo;
     }
 
-    public void setVida(int vida) {
-        if (vida < 0){
+    public void setVida(double vida) {
+        if (vida < 0) {
             throw new ValorNegativoException("A vida deve ser maior que 0");
-        } else if (vida > 250){
+        } else if (vida > 250) {
             throw new ValorExcessivoException("Vida maxima de 250 pontos");
         }
         this.vida = vida;
     }
 
-    public void subtraiVida(int valor) {
-        this.vida = this.vida - valor;
-        if (this.vida < 0) {
-            this.vida = 0;
-        }
-    }
-
-    public void setAtaque(int ataque) {
+    public void setAtaque(double ataque) {
         if (ataque < 0) {
             throw new ValorNegativoException("O ataque deve ser maior que 0");
         } else if (ataque > 50) {
@@ -100,7 +95,7 @@ public class Personagem {
         this.ataque = ataque;
     }
 
-    public void setAtaqueEspecial(int ataqueEspecial) {
+    public void setAtaqueEspecial(double ataqueEspecial) {
         if (ataqueEspecial < 0) {
             throw new ValorNegativoException("O ataque especial deve ser maior que 0");
         } else if (ataqueEspecial > 150) {
@@ -109,24 +104,24 @@ public class Personagem {
         this.ataqueEspecial = ataqueEspecial;
     }
 
-    public void setDefesa(int defesa){
-        if (defesa < 0){
+    public void setDefesa(double defesa) {
+        if (defesa < 0) {
             throw new ValorNegativoException("A defesa deve ser um numero positivo");
         } else if (defesa > 30) {
-            throw new ValorExcessivoException("Defesa maxima de 30 pontos")         ;
+            throw new ValorExcessivoException("Defesa maxima de 30 pontos");
         }
         this.defesa = defesa;
     }
 
-    public boolean isAtaqueEspecialUsado(){
+    public boolean isAtaqueEspecialUsado() {
         return ataqueEspecialUsado;
     }
 
-    public void usarAtaqueEspecial(){
+    public void usarAtaqueEspecial() {
         this.ataqueEspecialUsado = true;
     }
 
-    public void usarDefesa(){
+    public void usarDefesa() {
         if (podeDefender) {
             estaDefendendo = true;
             podeDefender = false;
@@ -136,7 +131,20 @@ public class Personagem {
         }
     }
 
-    public boolean possuiDefesa(){
+    public void resetDefesa() {
+        this.estaDefendendo = false;
+        this.podeDefender = true;
+    }
+
+    public boolean isDefendendo() {
         return estaDefendendo;
     }
+
+    public void subtrairVida(double valor) {
+        this.vida -= valor;
+        if (this.vida < 0) {
+            this.vida = 0;
+        }
+    }
+
 }

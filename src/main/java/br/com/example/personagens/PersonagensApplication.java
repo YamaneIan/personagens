@@ -15,6 +15,6 @@ public class PersonagensApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Principal principal = new Principal();
-		principal.lutar();
+		principal.executar();
 	}
 }
