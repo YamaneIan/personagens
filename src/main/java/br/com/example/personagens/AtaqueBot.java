@@ -1,25 +1,26 @@
 package br.com.example.personagens;
 
+import br.com.example.personagens.model.Bot;
 import br.com.example.personagens.model.Personagem;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Ataque {
+public class AtaqueBot {
 
-    public void atacar(Personagem personagem1, Personagem personagem2) {
+    public void atacar(Personagem personagem, Bot bot) {
         Scanner leitura = new Scanner(System.in);
         int atacarPrimeiro;
 
         System.out.printf("\nQuem vai atacar? \n%s = 1\n%s = 2\nCancelar o ataque = 3 : "
-                ,personagem1.getNome(),personagem2.getNome());
+                ,personagem.getNome(),bot.getNome());
 
         atacarPrimeiro = leitura.nextInt();
 
         if (atacarPrimeiro == 1) {
-            acao(personagem1, personagem2, leitura);
+            acao(personagem, bot, leitura);
         } else if (atacarPrimeiro == 2) {
-            acao(personagem2, personagem1, leitura);
+            acao(personagem, bot, leitura);
         } else if (atacarPrimeiro == 3) {
             System.out.println("Cancelando o ataque Testando Ataque.class ");
         } else {
@@ -27,7 +28,7 @@ public class Ataque {
         }
     }
 
-    private void acao(Personagem atacante, Personagem defensor, Scanner leitura) {
+    private void acao(Personagem atacante, Bot bot, Scanner leitura) {
         Random random = new Random();
         boolean criticoNormal = random.nextInt(100) < 25;
         double multiplicadorNormal = criticoNormal ? 1.5 : 1;
@@ -38,39 +39,24 @@ public class Ataque {
         int escolherAtaque = leitura.nextInt();
 
         if (escolherAtaque == 1) {
-            if (defensor.isDefendendo()) {
-                double ataqueFinal = atacante.getAtaque() * multiplicadorNormal;
-                ataqueFinal -= defensor.getDefesa();
-                if (ataqueFinal < 0) ataqueFinal = 0;
-                defensor.subtrairVida(ataqueFinal);
-                defensor.resetDefesa();
-            } else if (!defensor.isDefendendo()) {
-                double ataqueFinal = atacante.getAtaque() * multiplicadorNormal;
-                defensor.subtrairVida(ataqueFinal);
-            }
+            double ataqueFinal = atacante.getAtaque() * multiplicadorNormal;
+            bot.subtrairVida(ataqueFinal);
 
             double danoCausado = criticoNormal
                     ? atacante.getAtaque() * multiplicadorNormal
                     : atacante.getAtaque();
 
             System.out.println("\n" + atacante.getNome() + " atacou com o ataque normal "
-                    + (criticoNormal ? " com um CRÍTICO de " : " com " )
+                    + (criticoNormal ? " com um CRÍTICO de " : " com ")
                     + danoCausado
                     + " pontos de dano!!!"
-                    + "\nVida atual de " + defensor.getNome()
-                    + ": " + defensor.getVida());
+                    + "\nVida atual de " + bot.getNome()
+                    + ": " + bot.getVida());
 
         } else if (escolherAtaque == 2 && !atacante.isAtaqueEspecialUsado()) {
-            if (defensor.isDefendendo()) {
-                double ataqueFinal = (atacante.getAtaqueEspecial() * multiplicadorEspecial);
-                ataqueFinal -= defensor.getDefesa();
-                if (ataqueFinal < 0) ataqueFinal = 0;
-                defensor.subtrairVida(ataqueFinal);
-                defensor.resetDefesa();
-            } else if (!defensor.isDefendendo()) {
-                double ataqueFinal = atacante.getAtaqueEspecial() * multiplicadorEspecial;
-                defensor.subtrairVida(ataqueFinal);
-            }
+
+            double ataqueFinal = atacante.getAtaqueEspecial() * multiplicadorEspecial;
+            bot.subtrairVida(ataqueFinal);
 
             double danoCausado = criticoEspecial
                     ? atacante.getAtaqueEspecial() * multiplicadorEspecial
@@ -80,8 +66,8 @@ public class Ataque {
                     + (criticoEspecial ? " com um CRÍTICO de " : " com " )
                     + danoCausado
                     + " pontos de dano!!!"
-                    + "\nVida atual de " + defensor.getNome()
-                    + ": " + defensor.getVida());
+                    + "\nVida atual de " + bot.getNome()
+                    + ": " + bot.getVida());
             atacante.usarAtaqueEspecial();
         } else if (atacante.isAtaqueEspecialUsado()) {
             System.out.println("Ataque especial ja foi utilizado");

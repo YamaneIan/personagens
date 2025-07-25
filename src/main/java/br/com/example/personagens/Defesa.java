@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class Defesa {
 
-    public void defender(Personagem personagem1, Personagem personagem2){
+    public void defender(Personagem personagem1, Personagem personagem2) {
         Scanner leitura = new Scanner(System.in);
         int defender;
 
         System.out.printf("\nQuem vai defender? \n%s = 1\n%s = 2\nCancelar a defesa = 3 :\n"
-                ,personagem1.getNomePersonagem(),personagem2.getNomePersonagem());
+                ,personagem1.getNome(),personagem2.getNome());
         defender = leitura.nextInt();
 
-        if (defender == 1){
+        if (defender == 1) {
 
             personagem1.usarDefesa();
 

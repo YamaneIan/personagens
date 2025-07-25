@@ -16,11 +16,11 @@ public class LogicaDeCombate {
         this.personagem1 = personagem1;
         this.personagem2 = personagem2;
 
-        personagem1.getNomePersonagem();
+        personagem1.getNome();
         personagem1.getAtaque();
         personagem1.getVida();
 
-        personagem2.getNomePersonagem();
+        personagem2.getNome();
         personagem2.getAtaque();
         personagem2.getVida();
 
@@ -66,7 +66,6 @@ public class LogicaDeCombate {
 
         } while (true);
 
-
     }
 
     @Override
@@ -74,23 +73,23 @@ public class LogicaDeCombate {
         String resultado = "";
         
         if (personagem1.getVida() > personagem2.getVida()) {
-            resultado = personagem1.getNomePersonagem() + " venceu!!! ";
+            resultado = personagem1.getNome() + " venceu!!! ";
         } else if (personagem1.getVida() < personagem2.getVida()) {
-            resultado = personagem2.getNomePersonagem() + " venceu!!! ";
+            resultado = personagem2.getNome() + " venceu!!! ";
         } else if (personagem1.getVida() == personagem2.getVida()) {
             resultado = "O combate empatou!!! ";
         }
 
-        return "\n~~~ Combate entre: " + this.personagem1.getNomePersonagem()
+        return "\n~~~ Combate entre: " + this.personagem1.getNome()
                 + " (" + this.personagem1.getNomeJogador()
-                + ") e " + this.personagem2.getNomePersonagem()
+                + ") e " + this.personagem2.getNome()
                 + " (" + this.personagem2.getNomeJogador()
                 + ") ~~~\n~~~ " +
 
-                this.personagem1.getNomePersonagem() +
+                this.personagem1.getNome() +
                 " ~~~\nVida final: " + this.personagem1.getVida() + "\n~~~ " +
 
-                this.personagem2.getNomePersonagem() +
+                this.personagem2.getNome() +
                 "~~~ \nVida final: " + this.personagem2.getVida() + "\n" +
                 resultado;
     }

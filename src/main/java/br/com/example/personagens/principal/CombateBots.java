@@ -13,7 +13,7 @@ public class CombateBots {
     private int opcao = 1;
     private Turno turno = new Turno();
 
-    public void combateBot(){
+    public void combateBot() {
         do{
             PersonagemCommand personagemCommand = new PersonagemCommand();
             BotCommand botCommand = new BotCommand();
@@ -35,13 +35,15 @@ public class CombateBots {
             LogicaDeCombateBot logicaDeCombateBot = new LogicaDeCombateBot();
             logicaDeCombateBot.guardarPersonagem(personagemCommand.getPersonagem(), botCommand.getBot());
 
+            logicaDeCombateBot.iniciaAcao(personagemCommand.getPersonagem(), botCommand.getBot());
+
             turno.addBot(logicaDeCombateBot);
             System.out.println(logicaDeCombateBot);
 
             System.out.println("\nCriar novo combate = 1, \nEncerrar combate = 2\n");
             this.opcao = leitura.nextInt();
 
-            if (opcao > 2){
+            if (opcao > 2) {
                 System.out.println("\n!!! Comando nao encontrado, ENCERRANDO COMBATE !!!");
             }
         } while (opcao == 1);

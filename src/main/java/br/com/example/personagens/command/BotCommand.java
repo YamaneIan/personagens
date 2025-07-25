@@ -2,11 +2,11 @@ package br.com.example.personagens.command;
 
 import br.com.example.personagens.model.Bot;
 
-public class BotCommand{
+public class BotCommand {
     Bot bot = new Bot();
 
-    public void criarNomeBot(){
-        this.bot.setNomeBot("BOT");
+    public void criarNomeBot() {
+        this.bot.setNome("BOT");
     }
 
     public void criarVida() {

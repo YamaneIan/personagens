@@ -47,7 +47,7 @@ public class CombatePersonagens {
             System.out.println("\nCriar novo combate = 1, \nEncerrar programa = 2\n");
             this.opcao = leitura.nextInt();
 
-            if (opcao > 2){
+            if (opcao > 2) {
                 System.out.println("\n!!! Comando nao encontrado, ENCERRANDO COMBATE !!!");
             }
 

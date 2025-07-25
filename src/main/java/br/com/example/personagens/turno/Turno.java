@@ -18,13 +18,13 @@ public class Turno {
         this.combatesBot.add(combateBot);
     }
 
-    public void exibirStatus(){
+    public void exibirStatus() {
        for (LogicaDeCombate logicaDeCombate : this.combates) {
            System.out.println(logicaDeCombate.toString());
        }
     }
 
-    public void exibirStatusBot(){
+    public void exibirStatusBot() {
         for (LogicaDeCombateBot logicaDeCombateBot : this.combatesBot) {
             System.out.println(logicaDeCombateBot.toString());
         }
