@@ -27,7 +27,7 @@ public class Ataque {
         }
     }
 
-    private void acao(Personagem atacante, Personagem defensor, Scanner leitura) {
+    public void acao(Personagem atacante, Personagem defensor, Scanner leitura) {
         Random random = new Random();
         boolean criticoNormal = random.nextInt(100) < 25;
         double multiplicadorNormal = criticoNormal ? 1.5 : 1;

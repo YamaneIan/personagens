@@ -3,6 +3,7 @@ package br.com.example.personagens;
 import br.com.example.personagens.model.Bot;
 import br.com.example.personagens.model.Personagem;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -32,12 +33,31 @@ public class LogicaDeCombateBot {
             opcao = leitura.nextInt();
 
             if (opcao == 1) {
+                try {
+                    Ataque ataque = new Ataque();
+                    ataque.acao(personagem, bot, leitura);
+                    System.out.println("~~~ Acao de ataque encerrada ~~~ ");
+                } catch (InputMismatchException e) {
+                    System.out.println("\n!!! Escolha uma opcao valida !!!");
+                    System.out.println("~~~ Acao de ataque encerrada ~~~ ");
+                }
 
+                if (personagem.getVida() == 0 || bot.getVida() == 0) {
+                    System.out.println("\n!!! Personagem derrotado !!!");
+                    break;
+                }
             } else if (opcao == 2) {
+//                Defesa defesa = new Defesa();
+//                defesa.defender(personagem, bot);
+//                System.out.println("~~~ Acao de defesa encerrada ~~~");
 
             } else if (opcao == 3) {
+                System.out.println("~~~ Combate encerrado pelo jogador ~~~");
+                break;
 
             } else {
+                System.out.println("!!! Comando nao encontrado !!!");
+                this.iniciaAcao(personagem, bot);
 
             }
         } while (true);
