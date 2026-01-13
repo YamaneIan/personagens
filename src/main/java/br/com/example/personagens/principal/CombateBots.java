@@ -36,6 +36,7 @@ public class CombateBots {
             logicaDeCombateBot.guardarPersonagem(personagemCommand.getPersonagem(), botCommand.getBot());
 
             logicaDeCombateBot.iniciaAcao(personagemCommand.getPersonagem(), botCommand.getBot());
+            logicaDeCombateBot.botAtaca(personagemCommand.getPersonagem(), botCommand.getBot());
 
             turno.addBot(logicaDeCombateBot);
             System.out.println(logicaDeCombateBot);

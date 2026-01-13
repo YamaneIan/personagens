@@ -54,7 +54,7 @@ public class Ataque {
                     : atacante.getAtaque();
 
             System.out.println("\n" + atacante.getNome() + " atacou com o ataque normal "
-                    + (criticoNormal ? " com um CRÍTICO de " : " com " )
+                    + (criticoNormal ? " com um CRÍTICO de " : "com " )
                     + danoCausado
                     + " pontos de dano!!!"
                     + "\nVida atual de " + defensor.getNome()
@@ -77,7 +77,7 @@ public class Ataque {
                     : atacante.getAtaqueEspecial();
 
             System.out.println("\n" + atacante.getNome() + " atacou com o ataque especial"
-                    + (criticoEspecial ? " com um CRÍTICO de " : " com " )
+                    + (criticoEspecial ? " com um CRÍTICO de " : "com " )
                     + danoCausado
                     + " pontos de dano!!!"
                     + "\nVida atual de " + defensor.getNome()

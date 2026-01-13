@@ -6,12 +6,10 @@ import br.com.example.personagens.model.Personagem;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 public class LogicaDeCombateBot {
 
     private Personagem personagem;
     private Bot bot;
-
     public void guardarPersonagem(Personagem personagem,Bot bot) {
         System.out.println("\nAviso: Personagens guardados (LogicaDeCombateBot.class/guardarPersonagem)");
 
@@ -29,7 +27,7 @@ public class LogicaDeCombateBot {
         int opcao;
 
         do {
-            System.out.println("Qual vai ser a sua acao?\n1 = atacar\n2 = defender\n 3 = encerrar combate");
+            System.out.println("Qual vai ser a sua acao?\n1 = atacar\n2 = defender\n3 = encerrar combate");
             opcao = leitura.nextInt();
 
             if (opcao == 1) {
@@ -37,19 +35,20 @@ public class LogicaDeCombateBot {
                     Ataque ataque = new Ataque();
                     ataque.acao(personagem, bot, leitura);
                     System.out.println("~~~ Acao de ataque encerrada ~~~ ");
+                    botAtaca(personagem, bot);
                 } catch (InputMismatchException e) {
                     System.out.println("\n!!! Escolha uma opcao valida !!!");
                     System.out.println("~~~ Acao de ataque encerrada ~~~ ");
+                    botAtaca(personagem, bot);
                 }
 
-                if (personagem.getVida() == 0 || bot.getVida() == 0) {
+                if (personagem.getVida() <= 0 || bot.getVida() <= 0) {
                     System.out.println("\n!!! Personagem derrotado !!!");
                     break;
                 }
             } else if (opcao == 2) {
-//                Defesa defesa = new Defesa();
-//                defesa.defender(personagem, bot);
-//                System.out.println("~~~ Acao de defesa encerrada ~~~");
+                personagem.usarDefesa();
+                botAtaca(personagem,bot);
 
             } else if (opcao == 3) {
                 System.out.println("~~~ Combate encerrado pelo jogador ~~~");
@@ -61,6 +60,35 @@ public class LogicaDeCombateBot {
 
             }
         } while (true);
+    }
+
+    public void botAtaca(Personagem defensor, Bot atacante){
+        double danoFinal = bot.getAtaque();
+
+        if (personagem.isDefendendo()){
+            danoFinal -= personagem.getDefesa();
+            if (danoFinal <0){
+                danoFinal = 0;
+            }
+            defensor.setVida(personagem.getVida() - danoFinal);
+
+            System.out.println("\n" + atacante.getNome() + " atacou com o ataque normal "
+                    + "com "
+                    + danoFinal
+                    + " pontos de dano!!!"
+                    + "\nVida atual de " + defensor.getNome()
+                    + ": " + defensor.getVida());
+            System.out.println("\n~~~ Acao de defesa encerrada ~~~ ");
+        } else {
+            defensor.setVida(personagem.getVida() - bot.getAtaque());
+            System.out.println("\n" + atacante.getNome() + " atacou com o ataque normal "
+                    + "com "
+                    + atacante.getAtaque()
+                    + " pontos de dano!!!"
+                    + "\nVida atual de " + defensor.getNome()
+                    + ": " + defensor.getVida());
+            System.out.println("\n~~~ Acao de defesa encerrada ~~~ ");
+        }
     }
 
     @Override
@@ -75,7 +103,7 @@ public class LogicaDeCombateBot {
             resultado = "O combate empatou!!! ";
         }
 
-        return "\n~~~ Combate entre: " + this.personagem.getNomeJogador()
+        return "\n~~~ Combate entre: " + this.personagem.getNome()
                 + " (" + this.personagem.getNomeJogador()
                 + ") e " + this.bot.getNome()
                 +
